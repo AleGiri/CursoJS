@@ -25,7 +25,6 @@ let enemies = [
 ]
 
 enemies.push(demonio)
-console.log(enemies)
 
 
 let dif=[]
@@ -37,7 +36,7 @@ if (difficulty == "facil") {
 } else if (difficulty == "dificil") {
     dif=enemies[2]
 }
-
+console.log(enemies)
 console.log(dif)
 
 alert("Ha seleccionado " + difficulty + ". ¡Su batalla sera contra un " + dif.nombre + "!")
@@ -60,7 +59,7 @@ function enemyHpAttack() {
 }
 
 function enemyHpBlock() {
-    dif.remHpEnemies = dif.remHpEnemies - dif.plyrDmgBlock
+    dif.remHpEnemy = dif.remHpEnemy - dif.plyrDmgBlock
 }
 
 while (dif.remHpPlyr > 0 && dif.remHpEnemy > 0) {
