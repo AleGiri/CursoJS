@@ -4,59 +4,67 @@ while (difficulty != "facil" && difficulty != "mediana" && difficulty != "difici
     alert("¡Elija una dificultad!")
     difficulty = prompt("Elija la dificultad: ¿facil, mediana o dificil?").toLowerCase();
 }
+class Enemy{
+    constructor(plyrDmg, plyrDmgBlock, enemyDmg, enemyDmgBlock, remHpPlyr, remHpEnemy, nombre){
+    this.plyrDmg = plyrDmg;
+    this.plyrDmgBlock = plyrDmgBlock;
+    this.enemyDmg = enemyDmg;
+    this.enemyDmgBlock = enemyDmgBlock;
+    this.remHpPlyr = remHpPlyr;
+    this.remHpEnemy = remHpEnemy;
+    this.nombre = nombre
+}
+}
+const duende= new Enemy (6,4,4,2,20,25,"duende");
+const ogro= new Enemy (5,4,5,2,25,35,"ogro");
+const demonio= new Enemy (15,11,11,6,60,100,"demonio");
 
+let enemies = [
+    duende,
+    ogro,
+]
+
+enemies.push(demonio)
+console.log(enemies)
+
+
+let dif=[]
 
 if (difficulty == "facil") {
-    plyrDmg = 6;
-    plyrDmgBlock = 4;
-    enemyDmg = 4;
-    enemyDmgBlock = 2;
-    remHpPlyr = 20;
-    remHpEnemy = 25;
-    enemy = "duende"
+    dif=enemies[0]
 } else if (difficulty == "mediana") {
-    plyrDmg = 5;
-    plyrDmgBlock = 4;
-    enemyDmg = 5;
-    enemyDmgBlock = 2;
-    remHpPlyr = 25;
-    remHpEnemy = 35;
-    enemy = "ogro"
+    dif=enemies[1]
 } else if (difficulty == "dificil") {
-    plyrDmg = 15;
-    plyrDmgBlock = 11;
-    enemyDmg = 16;
-    enemyDmgBlock = 6;
-    remHpPlyr = 60;
-    remHpEnemy = 100;
-    enemy = "demonio";
+    dif=enemies[2]
 }
 
-alert("Ha seleccionado " + difficulty + ". ¡Su batalla sera contra un " + enemy + "!")
+console.log(dif)
+
+alert("Ha seleccionado " + difficulty + ". ¡Su batalla sera contra un " + dif.nombre + "!")
 let battle;
 
 function battleState() {
-    alert("El " + enemy + " tiene " + remHpEnemy + " de vida y tu tienes " + remHpPlyr + " de vida.")
+    alert("El " + dif.nombre + " tiene " + dif.remHpEnemy + " de vida y tu tienes " + dif.remHpPlyr + " de vida.")
 }
 
 function plyrHpAttack() {
-    remHpPlyr = remHpPlyr - enemyDmg
+    dif.remHpPlyr = dif.remHpPlyr - dif.enemyDmg
 }
 
 function plyrHpBlock() {
-    remHpPlyr = remHpPlyr - enemyDmgBlock
+    dif.remHpPlyr = dif.remHpPlyr - dif.enemyDmgBlock
 }
 
 function enemyHpAttack() {
-    remHpEnemy = remHpEnemy - plyrDmg
+    dif.remHpEnemy = dif.remHpEnemy - dif.plyrDmg
 }
 
 function enemyHpBlock() {
-    remHpEnemy = remHpEnemy - plyrDmgBlock
+    dif.remHpEnemies = dif.remHpEnemies - dif.plyrDmgBlock
 }
 
-while (remHpPlyr > 0 && remHpEnemy > 0) {
-    battle = prompt("El " + enemy + " tiene " + remHpEnemy + " de vida y hace " + enemyDmg + " de daño con cada ataque. Tu tienes " + remHpPlyr + " de vida y haces " + plyrDmg + " con cada ataque. Elige A para Atacar o B para bloquear ¿Quieres atacar o bloquear?").toLowerCase();
+while (dif.remHpPlyr > 0 && dif.remHpEnemy > 0) {
+    battle = prompt("El " + dif.nombre + " tiene " + dif.remHpEnemy + " de vida y hace " + dif.enemyDmg + " de daño con cada ataque. Tu tienes " + dif.remHpPlyr + " de vida y haces " + dif.plyrDmg + " con cada ataque. Elige A para Atacar o B para bloquear ¿Quieres atacar o bloquear?").toLowerCase();
     switch (battle) {
         case battle = "a":
             plyrHpAttack();
@@ -74,11 +82,11 @@ while (remHpPlyr > 0 && remHpEnemy > 0) {
     }
 }
 
-if (remHpEnemy <= 0 && remHpPlyr > 0) {
+if (dif.remHpEnemy <= 0 && dif.remHpPlyr > 0) {
     alert("¡Has ganado!")
-} else if (remHpPlyr <= 0 && remHpEnemy > 0) {
+} else if (dif.remHpPlyr <= 0 && dif.remHpEnemy > 0) {
     alert("¡Has perdido!")
-} else if (remHpEnemy <= 0 && remHpPlyr <= 0) {
+} else if (dif.remHpEnemy <= 0 && dif.remHpPlyr <= 0) {
     alert("Fue un empate, ¡mejora tu estrategia!")
 }
 alert("¡Muchas gracias por jugar!")
