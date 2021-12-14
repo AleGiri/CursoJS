@@ -36,7 +36,7 @@ easy.onclick = () => {
     let enemySprite = document.getElementById("enemyType")
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
-    enemySprite.src = "/images/goblin.png";
+    enemySprite.src = "images/goblin.png";
     document.getElementById("enemyType").appendChild(enemySprite)
 }
 medium.onclick = () => {
@@ -47,7 +47,7 @@ medium.onclick = () => {
     let enemySprite = document.getElementById("enemyType")
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
-    enemySprite.src = "/images/ogre.png";
+    enemySprite.src = "images/ogre.png";
     document.getElementById("enemyType").appendChild(enemySprite)
 }
 hard.onclick = () => {
@@ -58,7 +58,7 @@ hard.onclick = () => {
     let enemySprite = document.getElementById("enemyType")
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
-    enemySprite.src = "/images/demon.png";
+    enemySprite.src = "images/demon.png";
     document.getElementById("enemyType").appendChild(enemySprite)
 }
 // Fin seleccion de dificultad
