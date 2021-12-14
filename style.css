@@ -1,12 +1,12 @@
 body {
     background-color: black;
     margin: auto;
-    background-image: url(/images/allbg.jpg);
+    background-image: url(images/allbg.jpg);
     background-size: cover;
 }
 
 #battleFrame {
-    background-image: url(/images/battlebg.jpg);
+    background-image: url(images/battlebg.jpg);
     background-size: contain;
     width: 80rem;
     height: 40rem;
@@ -103,7 +103,7 @@ h3 {
     padding-bottom: 1rem;
     justify-items: center;
     align-items: center;
-    background-image: url(/images/backboard.png);
+    background-image: url(images/backboard.png);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 1rem;
