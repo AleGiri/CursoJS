@@ -1,16 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIMULADOR DE BATALLA</title>
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="bgSim">
-    <img src="bg.png" alt="">
-    </div>
+    <section id="battleFrame">
+        <header><img src="/images/title.png" alt=""></header>
+        <section class="fight">
+
+            <section id="actionBar">
+                <div class="actionButton">
+                    <div>
+                        <button id="attack"> Atacar<img class="playerAction" src="/images/attack.png"
+                                alt="Atacar"></button>
+
+                    </div>
+                    <div>
+                        <button id="block">Bloquear<img class="playerAction" src="/images/block.png"
+                                alt="Bloquear"></button>
+                    </div>
+
+                </div>
+                <div id="battleRecap">
+                    <h3>Acciones tomadas</h3>
+                    <div>
+                        <textarea class="textArea" name="" cols="45" rows="3" id="printRecap" readonly="readonly"></textarea>
+                        <h3>Atributos</h3>
+                        <textarea class="textArea" name="" cols="45" rows="3" id="printAttributes" readonly="readonly"></textarea>
+                    </div>
+                </div>
+                <div class="difficultyBar">
+                    <h3>Elija la dificultad</h3>
+                    <div>
+                        <button id="easy">Facil</button>
+                        <button id="medium">Mediana</button>
+                        <button id="hard">Dificil</button>
+                    </div>
+                </div>
+
+                <div class="pHP">
+                    <p>Puntos de vida</p>
+                    <input id="playerHP" type="text" placeholder="" readonly="readonly">
+                </div>
+                <div class="eHP">
+                    <p>Puntos de vida</p>
+                    <input id="enemyHP" type="text" placeholder="" readonly="readonly">
+                </div>
+            </section>
+
+
+            <section>
+                <div id="chars">
+                    <img class="war" src="/images/warrior.png" alt="">
+                    <div id="enemyType">
+                        <img src="" alt="">
+                    </div>
+            </section>
+        </section>
+        </div>
+    </section>
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -1,10 +1,148 @@
 body {
     background-color: black;
+    margin: auto;
+    background-image: url(/images/allbg.jpg);
+    background-size: cover;
 }
 
-.bgSim {
+#battleFrame {
+    background-image: url(/images/battlebg.jpg);
+    background-size: contain;
+    width: 80rem;
+    height: 40rem;
+    margin: auto;
+    border-radius: 2rem;
+    border: 0.2rem solid white;
+}
+
+header {
     display: flex;
-    padding: 20%;
+    justify-content: center;
+}
+
+header img {
+    width: 40rem;
+}
+
+.fight {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5rem;
+    padding-right: 5rem;
+
+}
+
+#chars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+#enemyType {
+    grid-column-start: 3;
+}
+
+h3 {
+    font-family: 'Press Start 2P';
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.textArea {
+    resize: none;
+}
+
+.bars {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.pHP,
+.eHP {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-content: center;
+    padding: 0.7rem;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.534);
+}
+
+.pHP {
+    grid-column-start: -4;
+    font-family: 'Press Start 2P';
+    margin: 0;
+}
+
+.eHP {
+    font-family: 'Press Start 2P';
+    margin: 0;
+}
+
+
+#result {
+    display: flex;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.playerAction {
+    display: flex;
+    flex-direction: column;
+    width: 4rem;
+}
+
+#actionBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding-bottom: 1rem;
+    justify-items: center;
+    align-items: center;
+    background-image: url(/images/backboard.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 1rem;
+}
+
+#battleRecap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    width: 95%;
+    height: 95%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    background-color: rgba(255, 255, 255, 0.534);
+}
+
+#printRecap {
+    text-align: center;
+}
+
+.actionButton {
+    padding-top: 1rem;
+    display: flex;
+    gap: 1.5rem;
+
+}
+
+.difficultyBar {
+    grid-column-start: 3;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 1rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+    background-color: rgba(255, 255, 255, 0.534);
 }

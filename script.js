@@ -1,95 +1,133 @@
-alert("Bienvenido a SIMULADOR DE BATALLA")
-let difficulty = prompt("Elija la dificultad: ¿facil, mediana o dificil?").toLowerCase();
-while (difficulty !== "facil" && difficulty !== "mediana" && difficulty !== "dificil") {
-    alert("¡Elija una dificultad!")
-    difficulty = prompt("Elija la dificultad: ¿facil, mediana o dificil?").toLowerCase();
-}
+// Constructor de enemigos
 class Enemy {
-    constructor(plyrDmg, plyrDmgBlock, enemyDmg, enemyDmgBlock, remHpPlyr, remHpEnemy, nombre) {
+    constructor(plyrDmg, plyrDmgBlock, enemyDmg, enemyDmgBlock, name) {
         this.plyrDmg = plyrDmg;
         this.plyrDmgBlock = plyrDmgBlock;
         this.enemyDmg = enemyDmg;
         this.enemyDmgBlock = enemyDmgBlock;
-        this.remHpPlyr = remHpPlyr;
-        this.remHpEnemy = remHpEnemy;
-        this.nombre = nombre
+        this.name = name
     }
 }
 
-const duende = new Enemy(25, 4, 4, 2, 20, 25, "duende");
-const ogro = new Enemy(5, 4, 5, 2, 25, 35, "ogro");
-const demonio = new Enemy(15, 11, 11, 6, 60, 100, "demonio");
+const duende = new Enemy(10, 4, 4, 2, "duende");
+const ogro = new Enemy(5, 4, 5, 2, "ogro");
+const demonio = new Enemy(15, 10, 12, 6, "demonio");
 
 let enemies = [
     duende,
     ogro,
+    demonio,
+]
+// Fin constructor de enemigos
+
+// Seleccion de dificultad
+let remHpPlyr
+let remHpEnemy
+let difficulty = [
+    remHpPlyr,
+    remHpEnemy,
 ]
 
-enemies.push(demonio)
-
-let dif = []
-
-if (difficulty == "facil") {
-    dif = enemies[0]
-} else if (difficulty == "mediana") {
-    dif = enemies[1]
-} else if (difficulty == "dificil") {
-    dif = enemies[2]
+easy.onclick = () => {
+    difficulty = enemies[0]
+    difficulty.remHpPlyr = 20
+    difficulty.remHpEnemy = 25
+    difficultySelect()
+    let enemySprite = document.getElementById("enemyType")
+    enemySprite.removeChild(enemySprite.childNodes[2])
+    enemySprite = document.createElement("img")
+    enemySprite.src = "/images/goblin.png";
+    document.getElementById("enemyType").appendChild(enemySprite)
 }
+medium.onclick = () => {
+    difficulty = enemies[1]
+    difficulty.remHpPlyr = 25
+    difficulty.remHpEnemy = 35
+    difficultySelect()
+    let enemySprite = document.getElementById("enemyType")
+    enemySprite.removeChild(enemySprite.childNodes[2])
+    enemySprite = document.createElement("img")
+    enemySprite.src = "/images/ogre.png";
+    document.getElementById("enemyType").appendChild(enemySprite)
+}
+hard.onclick = () => {
+    difficulty = enemies[2]
+    difficulty.remHpPlyr = 60
+    difficulty.remHpEnemy = 100
+    difficultySelect()
+    let enemySprite = document.getElementById("enemyType")
+    enemySprite.removeChild(enemySprite.childNodes[2])
+    enemySprite = document.createElement("img")
+    enemySprite.src = "/images/demon.png";
+    document.getElementById("enemyType").appendChild(enemySprite)
+}
+// Fin seleccion de dificultad
 
-console.log(enemies)
-console.log(dif)
 
-let sortArray = enemies.sort((a, c) => a.nombre.length - c.nombre.length);
-console.log("Array", sortArray)
-
-alert("Ha seleccionado " + difficulty + ". ¡Su batalla sera contra un " + dif.nombre + "!")
+// Funciones de ataque, bloqueo, progreso pelea y fin pelea
 let battle;
 
 function battleState() {
-    alert("El " + dif.nombre + " tiene " + dif.remHpEnemy + " de vida y tu tienes " + dif.remHpPlyr + " de vida.")
+    document.getElementById("printRecap").value = ("El " + difficulty.name + " tiene " + difficulty.remHpEnemy + " de vida y tu tienes " + difficulty.remHpPlyr + " de vida.")
 }
 
-function plyrHpAttack() {
-    dif.remHpPlyr = dif.remHpPlyr - dif.enemyDmg
+function attackAction() {
+    difficulty.remHpPlyr = difficulty.remHpPlyr - difficulty.enemyDmg;
+    difficulty.remHpEnemy = difficulty.remHpEnemy - difficulty.plyrDmg
 }
 
-function plyrHpBlock() {
-    dif.remHpPlyr = dif.remHpPlyr - dif.enemyDmgBlock
+function blockAction() {
+    difficulty.remHpPlyr = difficulty.remHpPlyr - difficulty.enemyDmgBlock;
+    difficulty.remHpEnemy = difficulty.remHpEnemy - difficulty.plyrDmgBlock
 }
 
-function enemyHpAttack() {
-    dif.remHpEnemy = dif.remHpEnemy - dif.plyrDmg
-}
-
-function enemyHpBlock() {
-    dif.remHpEnemy = dif.remHpEnemy - dif.plyrDmgBlock
-}
-
-while (dif.remHpPlyr > 0 && dif.remHpEnemy > 0) {
-    battle = prompt("El " + dif.nombre + " tiene " + dif.remHpEnemy + " de vida y hace " + dif.enemyDmg + " de daño con cada ataque. Tu tienes " + dif.remHpPlyr + " de vida y haces " + dif.plyrDmg + " con cada ataque. Elige A para Atacar o B para bloquear ¿Quieres atacar o bloquear?").toLowerCase();
-    switch (battle) {
-        case "a":
-            plyrHpAttack();
-            enemyHpAttack();
-            battleState();
-            break;
-        case "b":
-            plyrHpBlock();
-            enemyHpBlock();
-            battleState();
-            break;
-        default:
-            alert("¡Debes elegir A para atacar o B para bloquear!");
-            break;
+function battleResult() {
+    if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
+        document.getElementById("printRecap").value = ("¡Has ganado! Selecciona nueva dificultad para pelear nuevamente.");
+    } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
+        document.getElementById("printRecap").value = ("¡Has perdido! Selecciona nueva dificultad para pelear nuevamente.");
     }
 }
 
-if (dif.remHpEnemy <= 0 && dif.remHpPlyr > 0) {
-    alert("¡Has ganado!")
-} else if (dif.remHpPlyr <= 0 && dif.remHpEnemy > 0) {
-    alert("¡Has perdido!")
-} else if (dif.remHpEnemy <= 0 && dif.remHpPlyr <= 0) {
-    alert("Fue un empate, ¡mejora tu estrategia!")
+function difficultySelect() {
+    document.getElementById("playerHP").value = difficulty.remHpPlyr;
+    document.getElementById("enemyHP").value = difficulty.remHpEnemy;
+    document.getElementById("printRecap").value = ("¡Su batalla sera contra un " + difficulty.name + "!")
+    document.getElementById("printAttributes").value = ("Atacar: haces " + difficulty.plyrDmg + " de daño y recibes " + difficulty.enemyDmg + " daño\nBloquear: haces " + difficulty.plyrDmgBlock + " de daño y recibes " + difficulty.enemyDmgBlock + " de daño")
 }
-alert("¡Muchas gracias por jugar!")
+// Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
+
+// Botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
+
+let attack = document.getElementById("attack");
+let block = document.getElementById("block")
+let victory
+
+attack.onclick = () => {
+    if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
+        document.getElementById("printRecap").value = ("¡El enemigo ya murio! Selecciona nueva dificultad para pelear nuevamente.");
+    } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
+        document.getElementById("printRecap").value = ("¡Ya has muerto! Selecciona nueva dificultad para pelear nuevamente.");
+    } else {
+        attackAction();
+        battleState();
+        document.getElementById("playerHP").value = difficulty.remHpPlyr;
+        document.getElementById("enemyHP").value = difficulty.remHpEnemy;
+        battleResult()
+    }
+}
+
+block.onclick = () => {
+    if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
+        document.getElementById("printRecap").value = ("¡El enemigo ya murio! Selecciona nueva dificultad para pelear nuevamente.");
+    } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
+        document.getElementById("printRecap").value = ("¡Ya has muerto! Selecciona nueva dificultad para pelear nuevamente.");
+    } else {
+        blockAction();
+        battleState();
+        document.getElementById("playerHP").value = difficulty.remHpPlyr;
+        document.getElementById("enemyHP").value = difficulty.remHpEnemy;
+        battleResult()
+    }
+}
+// Fin botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
