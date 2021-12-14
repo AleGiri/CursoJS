@@ -65,7 +65,7 @@ hard.onclick = () => {
 
 
 // Funciones de ataque, bloqueo, progreso pelea y fin pelea
-let battle;
+
 
 function battleState() {
     document.getElementById("printRecap").value = ("El " + difficulty.name + " tiene " + difficulty.remHpEnemy + " de vida y tu tienes " + difficulty.remHpPlyr + " de vida.")
@@ -95,6 +95,10 @@ function difficultySelect() {
     document.getElementById("printRecap").value = ("¡Su batalla sera contra un " + difficulty.name + "!")
     document.getElementById("printAttributes").value = ("Atacar: haces " + difficulty.plyrDmg + " de daño y recibes " + difficulty.enemyDmg + " daño\nBloquear: haces " + difficulty.plyrDmgBlock + " de daño y recibes " + difficulty.enemyDmgBlock + " de daño")
 }
+
+function alertFinal() {
+    document.getElementById("printRecap").value = ("Selecciona nueva dificultad para pelear nuevamente.");
+}
 // Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
 
 // Botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
@@ -105,9 +109,9 @@ let victory
 
 attack.onclick = () => {
     if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
-        document.getElementById("printRecap").value = ("¡El enemigo ya murio! Selecciona nueva dificultad para pelear nuevamente.");
+        alertFinal()
     } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
-        document.getElementById("printRecap").value = ("¡Ya has muerto! Selecciona nueva dificultad para pelear nuevamente.");
+        alertFinal()
     } else {
         attackAction();
         battleState();
@@ -119,9 +123,9 @@ attack.onclick = () => {
 
 block.onclick = () => {
     if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
-        document.getElementById("printRecap").value = ("¡El enemigo ya murio! Selecciona nueva dificultad para pelear nuevamente.");
+        alertFinal();
     } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
-        document.getElementById("printRecap").value = ("¡Ya has muerto! Selecciona nueva dificultad para pelear nuevamente.");
+        alertFinal();
     } else {
         blockAction();
         battleState();
@@ -130,4 +134,4 @@ block.onclick = () => {
         battleResult()
     }
 }
-// Fin botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
+// Fin evento botones de ataque y bloqueo
