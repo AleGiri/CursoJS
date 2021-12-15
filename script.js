@@ -81,14 +81,6 @@ function blockAction() {
     difficulty.remHpEnemy = difficulty.remHpEnemy - difficulty.plyrDmgBlock
 }
 
-function battleResult() {
-    if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
-        document.getElementById("printRecap").value = ("¡Has ganado! Selecciona nueva dificultad para pelear nuevamente.");
-    } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
-        document.getElementById("printRecap").value = ("¡Has perdido! Selecciona nueva dificultad para pelear nuevamente.");
-    }
-}
-
 function difficultySelect() {
     document.getElementById("playerHP").value = difficulty.remHpPlyr;
     document.getElementById("enemyHP").value = difficulty.remHpEnemy;
@@ -101,11 +93,51 @@ function alertFinal() {
 }
 // Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
 
+// Funcion de guardado en localstorage de victorias y derrotas
+
+let winCount = localStorage.getItem("Victorias")
+let loseCount = localStorage.getItem("Derrotas")
+
+function winPrint() {
+    document.getElementById("wins").value = winCount
+}
+function losePrint() {
+    document.getElementById("loses").value = loseCount
+}
+
+
+function battleResult() {
+    if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
+        document.getElementById("printRecap").value = ("¡Has ganado! Selecciona nueva dificultad para pelear nuevamente.");
+
+        if (localStorage.getItem("Victorias") == null && localStorage.getItem("Victorias") == 0) {
+            localStorage.setItem("Victorias", 0)
+            } else {
+            winCount = JSON.parse(localStorage.getItem('Victorias'))+1
+            localStorage.setItem('Victorias', JSON.stringify(winCount))
+        }
+        winPrint()
+    } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
+        document.getElementById("printRecap").value = ("¡Has perdido! Selecciona nueva dificultad para pelear nuevamente.");
+
+        if (localStorage.getItem("Derrotas") == null && localStorage.getItem("Derrotas") == 0) {
+            localStorage.setItem("Derrotas", 0)
+        } else {
+            loseCount = JSON.parse(localStorage.getItem('Derrotas'))+1
+            localStorage.setItem('Derrotas', JSON.stringify(loseCount))
+        }
+        losePrint()
+    }
+}
+winPrint()
+losePrint()
+// Fin funcion de guardado en localstorage de victorias y derrotas
+
 // Botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
 
 let attack = document.getElementById("attack");
 let block = document.getElementById("block")
-let victory
+
 
 attack.onclick = () => {
     if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
