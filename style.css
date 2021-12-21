@@ -4,9 +4,30 @@ body {
     background-image: url(images/allbg.jpg);
     background-size: cover;
 }
+.darkModeToggle, .modelToggle, .credentialsChange {
+    width: 4rem;   
+}
+.leftUI {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0.7%;
+}
+#darkModeButton {
+    background-color: transparent;
+    border: none;
+}
+
+#modelButton {
+    background-color: transparent;
+    border: none;
+}
+#credentialsButton {
+    background-color: transparent;
+    border: none;
+}
 
 #battleFrame {
-    background-image: url(images/battlebg.jpg);
     background-size: contain;
     width: 80rem;
     height: 40rem;
@@ -41,6 +62,7 @@ header img {
 
 #enemyType {
     grid-column-start: 3;
+    height: 306px;
 }
 
 h3 {
@@ -48,6 +70,7 @@ h3 {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     text-align: center;
+    text-decoration: underline 2px;
 }
 
 .textArea {
@@ -60,7 +83,11 @@ h3 {
     justify-content: space-between;
     padding: 1rem;
 }
-
+#attack, #block {
+    border-radius: 1rem;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.534);
+}
 .pHP,
 .eHP {
     display: flex;
@@ -68,21 +95,45 @@ h3 {
     justify-content: center;
     align-content: center;
     padding: 0.7rem;
+    margin: 0;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.534);
+    font-size: 10px;
+    text-align: center;
+    height: 5rem;
+    width: 20rem;
 }
 
 .pHP {
     grid-column-start: -4;
     font-family: 'Press Start 2P';
-    margin: 0;
-}
 
+}
 .eHP {
     font-family: 'Press Start 2P';
-    margin: 0;
+}
+#enemyName, #playerName {
+    background-color: transparent;
+    border: none;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    font-size: 20px;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
+#enemyHP, #playerHP {
+    background-color: transparent;
+    border: none;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    font-size: 20px;
+}
+
+.eHP p, .pHP p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 #result {
     display: flex;
@@ -104,12 +155,16 @@ h3 {
     padding-bottom: 1rem;
     justify-items: center;
     align-items: center;
-    background-image: url(images/backboard.png);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 1rem;
 }
-
+#wins, #loses {
+    font-family: 'Press Start 2P';
+    text-align: center;
+    background-color: transparent;
+    border: none;
+}
 #battleRecap {
     display: flex;
     flex-direction: column;
@@ -124,13 +179,20 @@ h3 {
     grid-row-end: 3;
     background-color: rgba(255, 255, 255, 0.534);
 }
-
+.unusedImage {
+    display: none;
+    height: 0%;
+}
+.cajaTexto {
+    background-color: transparent;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 #printRecap {
     text-align: center;
 }
 
 .actionButton {
-    padding-top: 1rem;
     display: flex;
     gap: 1.5rem;
 
