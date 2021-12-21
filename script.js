@@ -1,3 +1,6 @@
+// Botones de lateral izquierda - Cambio de genero de modelo de personaje, registro de nombre y cambio a "Dark Mode" ON/OFF
+let modelChange = document.getElementById("war")
+let darkMode = false
 
 if (localStorage.getItem("Registrado") !== "true") {
     let playerNameInput = prompt("Ingrese su nombre");
@@ -12,6 +15,58 @@ credentialsButton.onclick = () => {
     playerNameInput = prompt("¿Que nombre desea usar?")
     localStorage.setItem("Nombre", playerNameInput);
     document.getElementById("playerName").value = localStorage.getItem("Nombre")
+}
+
+
+darkModeButton.onclick = () => {
+    let bgMode = document.getElementById("battleFrame")
+    let boardMode = document.getElementById("actionBar")
+    switch (darkMode) {
+        case true:
+            bgMode.style = 'background-image: url(images/battlebg.jpg);'
+            boardMode.style = "background-image: url(images/backboard.png)"
+            darkMode = false
+            console.log("Dark Mode:" + darkMode)
+            break;
+        case false:
+            bgMode.style = 'background-image: url(images/battlebgnight.jpg);'
+            boardMode.style = "background-image: url(images/backboardnight.png)"
+            darkMode = true
+            console.log("Dark Mode:" + darkMode)
+            break;
+    }
+}
+
+function modelFunction() {
+    console.log(modelSex)
+    localStorage.setItem("Modelo", modelSex)
+    document.getElementById("war").value = localStorage.getItem("Modelo")
+}
+
+if (localStorage.getItem("Modelo") == "ModelFem") {
+    modelChange.src = "images/warriorfgif.gif"
+    modelSex = "ModelFem"
+    modelFunction()
+} else {
+    modelChange.src = "images/warriormgif.gif"
+    modelSex = "ModelMasc"
+    modelFunction()
+}
+
+modelButton.onclick = () => {
+    switch (modelSex) {
+        case "ModelFem":
+            modelChange.src = "images/warriormgif.gif"
+            modelSex = "ModelMasc"
+            console.log(modelSex)
+            localStorage.setItem("Modelo", modelSex)
+            break;
+        case "ModelMasc":
+            modelChange.src = "images/warriorfgif.gif"
+            modelSex = "ModelFem"
+            console.log(modelSex)
+            localStorage.setItem("Modelo", modelSex)
+    }
 }
 
 // Constructor de enemigos
@@ -43,42 +98,6 @@ let difficulty = [
     remHpPlyr,
     remHpEnemy,
 ]
-let darkMode = false
-darkModeButton.onclick = () => {
-    let bgMode = document.getElementById("battleFrame")
-    let boardMode = document.getElementById("actionBar")
-    switch (darkMode) {
-        case true:
-            bgMode.style = 'background-image: url(images/battlebg.jpg);'
-            boardMode.style = "background-image: url(images/backboard.png)"
-            darkMode = false
-            console.log("Dark Mode:" + darkMode)
-            break;
-        case false:
-            bgMode.style = 'background-image: url(images/battlebgnight.jpg);'
-            boardMode.style = "background-image: url(images/backboardnight.png)"
-            darkMode = true
-            console.log("Dark Mode:" + darkMode)
-    }
-}
-let modelSex = "ModelMasc"
-modelButton.onclick = () => {
-    let modelChange = document.getElementById("war")
-    switch (modelSex) {
-        case "ModelFem":
-            modelChange.src = "images/warriormgif.gif"
-            modelSex = "ModelMasc"
-            console.log(modelSex)
-            break;
-        case "ModelMasc":
-            modelChange.src = "images/warriorfgif.gif"
-            modelSex = "ModelFem"
-            console.log(modelSex)
-    }
-}
-
-
-
 
 easy.onclick = () => {
     difficulty = enemies[0]
