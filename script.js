@@ -1,36 +1,107 @@
+$(document).ready(function () {
+    console.log("DOM Ready");
+});
+
+
 // Botones de lateral izquierda - Cambio de genero de modelo de personaje, registro de nombre y cambio a "Dark Mode" ON/OFF
+
+
 let modelChange = document.getElementById("war")
 let darkMode = false
 
 if (localStorage.getItem("Registrado") !== "true") {
-    let playerNameInput = prompt("Ingrese su nombre");
-    localStorage.setItem("Nombre", playerNameInput);
-    document.getElementById("playerName").value = localStorage.getItem("Nombre");
-    localStorage.setItem("Registrado", "true")
+    (async () => {
+
+        let {
+            value: yourName
+        } = await Swal.fire({
+            customClass: "popupStyle",
+            title: 'Cambiar nombre',
+            input: 'text',
+            inputLabel: 'Ingresa tu nombre',
+            inputPlaceholder: 'Tu nombre',
+            inputValidator: (value) => {
+                if (!value) {
+                    return '¡Escribe tu nombre!'
+                }
+            }
+        })
+
+        if (yourName) {
+            Swal.fire(`Tu nombre es: \n ${yourName}`)
+            localStorage.setItem("Nombre", yourName);
+            document.getElementById("playerName").value = localStorage.getItem("Nombre")
+            localStorage.setItem("Registrado", "true")
+        }
+
+    })()
+
 } else {
     document.getElementById("playerName").value = localStorage.getItem("Nombre")
 }
-
-credentialsButton.onclick = () => {
-    playerNameInput = prompt("¿Que nombre desea usar?")
-    localStorage.setItem("Nombre", playerNameInput);
-    document.getElementById("playerName").value = localStorage.getItem("Nombre")
+if (localStorage.getItem("Modelo") == "ModelFem") {
+    modelChange.src = "images/warriorfgif.gif"
+    modelSex = "ModelFem"
+    modelFunction()
+} else {
+    modelChange.src = "images/warriormgif.gif"
+    modelSex = "ModelMasc"
+    modelFunction()
 }
 
 
+credentialsButton.onclick = () => {
+    (async () => {
+
+        let {
+            value: yourName
+        } = await Swal.fire({
+            customClass: "popupStyle",
+            title: 'Cambiar nombre',
+            input: 'text',
+            inputLabel: 'Ingresa tu nuevo nombre',
+            inputPlaceholder: 'Tu nombre',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return '¡Escribe tu nuevo nombre!'
+                }
+            }
+        })
+
+        if (yourName) {
+            Swal.fire(`Tu nombre es: \n ${yourName}`)
+            localStorage.setItem("Nombre", yourName);
+            document.getElementById("playerName").value = localStorage.getItem("Nombre")
+        }
+
+    })()
+}
+
+// Boton de dark mode // JQUERY CAMBIO DE BACKGROUND IMAGE PARA DARK/LIGHT MODE
 darkModeButton.onclick = () => {
-    let bgMode = document.getElementById("battleFrame")
-    let boardMode = document.getElementById("actionBar")
     switch (darkMode) {
         case true:
-            bgMode.style = 'background-image: url(images/battlebg.jpg);'
-            boardMode.style = "background-image: url(images/backboard.png)"
+            // bgMode.style = 'background-image: url(images/battlebg.jpg);'
+            // boardMode.style = "background-image: url(images/backboard.png)"
+            $("#battleFrame").css({
+                backgroundImage: "url(images/battlebg.jpg)"
+            })
+            $("#actionBar").css({
+                backgroundImage: "url(images/backboard.png"
+            })
             darkMode = false
             console.log("Dark Mode:" + darkMode)
             break;
         case false:
-            bgMode.style = 'background-image: url(images/battlebgnight.jpg);'
-            boardMode.style = "background-image: url(images/backboardnight.png)"
+            // bgMode.style = 'background-image: url(images/battlebgnight.jpg);'
+            // boardMode.style = "background-image: url(images/backboardnight.png)"
+            $("#battleFrame").css({
+                backgroundImage: "url(images/battlebgnight.jpg)"
+            })
+            $("#actionBar").css({
+                backgroundImage: "url(images/backboardnight.png"
+            })
             darkMode = true
             console.log("Dark Mode:" + darkMode)
             break;
@@ -43,15 +114,7 @@ function modelFunction() {
     document.getElementById("war").value = localStorage.getItem("Modelo")
 }
 
-if (localStorage.getItem("Modelo") == "ModelFem") {
-    modelChange.src = "images/warriorfgif.gif"
-    modelSex = "ModelFem"
-    modelFunction()
-} else {
-    modelChange.src = "images/warriormgif.gif"
-    modelSex = "ModelMasc"
-    modelFunction()
-}
+
 
 modelButton.onclick = () => {
     switch (modelSex) {
@@ -171,6 +234,26 @@ function alertFinal() {
 }
 // Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
 
+function winAlert() {
+    Swal.fire({
+        imageUrl: 'images/victory.png',
+        timer: 1200,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        background: 'transparent'
+   })
+}
+
+function loseAlert() {
+    Swal.fire({
+        imageUrl: 'images/defeat.png',
+        timer: 1000,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        background: 'transparent'
+   })
+}
+
 // Funcion de guardado en localstorage de victorias y derrotas
 
 let winCount = localStorage.getItem("Victorias")
@@ -178,6 +261,7 @@ let loseCount = localStorage.getItem("Derrotas")
 
 function winPrint() {
     document.getElementById("wins").value = winCount
+
 }
 
 function losePrint() {
@@ -196,6 +280,7 @@ function battleResult() {
             winCount = JSON.parse(localStorage.getItem('Victorias')) + 1
             localStorage.setItem('Victorias', JSON.stringify(winCount))
         }
+        winAlert()
         winPrint()
     } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
         document.getElementById("printRecap").value = ("¡Has perdido! Selecciona nueva dificultad para pelear nuevamente.");
@@ -206,6 +291,7 @@ function battleResult() {
             loseCount = JSON.parse(localStorage.getItem('Derrotas')) + 1
             localStorage.setItem('Derrotas', JSON.stringify(loseCount))
         }
+        loseAlert()
         losePrint()
     }
 }

@@ -85,10 +85,10 @@ h3 {
     justify-content: space-between;
     padding: 1rem;
 }
-#attack, #block {
-    border-radius: 1rem;
-    border: none;
+#attack, #block { 
+    border: 0.15rem solid black;
     background-color: rgba(255, 255, 255, 0.534);
+    border-radius: 1rem;
 }
 .pHP,
 .eHP {
@@ -233,4 +233,8 @@ h3 {
     flex-direction: column;
     border-radius: 1rem;
     margin-bottom: 1rem;
+}
+
+.swal2-shown {
+    font-family: 'Press Start 2P';
 }
