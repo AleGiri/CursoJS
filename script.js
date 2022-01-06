@@ -51,6 +51,7 @@ if (localStorage.getItem("Modelo") == "ModelFem") {
     modelFunction()
 }
 
+// Boton de cambio de nombre de usuario
 
 credentialsButton.onclick = () => {
     (async () => {
@@ -58,7 +59,6 @@ credentialsButton.onclick = () => {
         let {
             value: yourName
         } = await Swal.fire({
-            customClass: "popupStyle",
             title: 'Cambiar nombre',
             input: 'text',
             inputLabel: 'Ingresa tu nuevo nombre',
@@ -84,8 +84,6 @@ credentialsButton.onclick = () => {
 darkModeButton.onclick = () => {
     switch (darkMode) {
         case true:
-            // bgMode.style = 'background-image: url(images/battlebg.jpg);'
-            // boardMode.style = "background-image: url(images/backboard.png)"
             $("#battleFrame").css({
                 backgroundImage: "url(images/battlebg.jpg)"
             })
@@ -96,8 +94,6 @@ darkModeButton.onclick = () => {
             console.log("Dark Mode:" + darkMode)
             break;
         case false:
-            // bgMode.style = 'background-image: url(images/battlebgnight.jpg);'
-            // boardMode.style = "background-image: url(images/backboardnight.png)"
             $("#battleFrame").css({
                 backgroundImage: "url(images/battlebgnight.jpg)"
             })
@@ -110,13 +106,12 @@ darkModeButton.onclick = () => {
     }
 }
 
+// Boton de cambio de modelo personaje y su funcion
 function modelFunction() {
     console.log(modelSex)
     localStorage.setItem("Modelo", modelSex)
     document.getElementById("war").value = localStorage.getItem("Modelo")
 }
-
-
 
 modelButton.onclick = () => {
     if (document.getElementById("playerName").value == "Tincho") {
@@ -186,6 +181,7 @@ easy.onclick = () => {
     enemySprite.className = "enemyModel"
     document.getElementById("enemyType").appendChild(enemySprite)
     document.getElementById("enemyName").value = difficulty.name
+    
 }
 medium.onclick = () => {
     $("#war").fadeIn();
@@ -251,29 +247,8 @@ function alertFinal() {
 }
 // Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
 
-function winAlert() {
-    $(".enemyModel").fadeOut();
-    Swal.fire({
-        imageUrl: 'images/victory.png',
-        timer: 1200,
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        background: 'transparent'
-    })
-}
 
-function loseAlert() {
-    $("#war").fadeOut();
-    Swal.fire({
-        imageUrl: 'images/defeat.png',
-        timer: 1000,
-        showConfirmButton: false,
-        allowOutsideClick: false,
-        background: 'transparent'
-    })
-}
-
-// Funcion de guardado en localstorage de victorias y derrotas
+// Funcion de guardado en localstorage de victorias y derrotas + Sweet Alert Victoria/Derrota
 
 let winCount = localStorage.getItem("Victorias")
 let loseCount = localStorage.getItem("Derrotas")
@@ -315,9 +290,32 @@ function battleResult() {
 }
 winPrint()
 losePrint()
-// Fin funcion de guardado en localstorage de victorias y derrotas
 
-// Botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador
+function winAlert() {
+    $(".enemyModel").fadeOut();
+    Swal.fire({
+        imageUrl: 'images/victory.png',
+        timer: 1200,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        background: 'transparent'
+    })
+}
+
+function loseAlert() {
+    $("#war").fadeOut();
+    Swal.fire({
+        imageUrl: 'images/defeat.png',
+        timer: 1000,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        background: 'transparent'
+    })
+}
+
+// Fin funcion de guardado en localstorage de victorias y derrotas  + Sweet Alert Victoria/Derrota
+
+// Botones de ataque y bloqueo, "if" para determinar si murio enemigo o jugador + Animaciones de ataque y bloqueo
 
 let attack = document.getElementById("attack");
 let block = document.getElementById("block")
@@ -360,4 +358,4 @@ block.onclick = () => {
         battleResult()
     }
 }
-// Fin evento botones de ataque y bloqueo
+// Fin evento botones de ataque y bloqueo + Animaciones de ataque y bloqueo
