@@ -121,26 +121,26 @@ function modelFunction() {
 modelButton.onclick = () => {
     if (document.getElementById("playerName").value == "Tincho") {
         modelChange.src = "images/secrettincho.gif"
-    } else if (document.getElementById("playerName").value == "Lenosaurio"){
+    } else if (document.getElementById("playerName").value == "Lenosaurio") {
         modelChange.src = "images/secretlenosaurio.gif"
+    } else if (document.getElementById("playerName").value == "Mecha") {
+        modelChange.src = "images/secretmecha.gif"
+    } else {
+        switch (modelSex) {
+            case "ModelFem":
+                modelChange.src = "images/warriormgif.gif"
+                modelSex = "ModelMasc"
+                console.log(modelSex)
+                localStorage.setItem("Modelo", modelSex)
+                break;
+            case "ModelMasc":
+                modelChange.src = "images/warriorfgif.gif"
+                modelSex = "ModelFem"
+                console.log(modelSex)
+                localStorage.setItem("Modelo", modelSex)
+
+        }
     }
-    else if (document.getElementById("playerName").value == "Mecha") {modelChange.src = "images/secretmecha.gif"}
-       else {
-    switch (modelSex) {
-        case "ModelFem":
-            modelChange.src = "images/warriormgif.gif"
-            modelSex = "ModelMasc"
-            console.log(modelSex)
-            localStorage.setItem("Modelo", modelSex)
-            break;
-        case "ModelMasc":
-            modelChange.src = "images/warriorfgif.gif"
-            modelSex = "ModelFem"
-            console.log(modelSex)
-            localStorage.setItem("Modelo", modelSex)
-            
-    }
-}
 }
 
 // Constructor de enemigos

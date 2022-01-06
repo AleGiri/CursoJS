@@ -4,15 +4,20 @@ body {
     background-image: url(images/allbg.jpg);
     background-size: cover;
 }
-.darkModeToggle, .modelToggle, .credentialsChange {
-    width: 4rem;   
+
+.darkModeToggle,
+.modelToggle,
+.credentialsChange {
+    width: 4rem;
 }
+
 .leftUI {
     display: flex;
     flex-direction: column;
     position: fixed;
     top: 1.8%;
 }
+
 #darkModeButton {
     background-color: transparent;
     border: none;
@@ -22,6 +27,7 @@ body {
     background-color: transparent;
     border: none;
 }
+
 #credentialsButton {
     background-color: transparent;
     border: none;
@@ -67,7 +73,7 @@ h3 {
 
 .textArea {
     resize: none;
-    pointer-events:none
+    pointer-events: none
 }
 
 .bars {
@@ -76,11 +82,14 @@ h3 {
     justify-content: space-between;
     padding: 1rem;
 }
-#attack, #block { 
+
+#attack,
+#block {
     border: 0.15rem solid black;
     background-color: rgba(255, 255, 255, 0.534);
     border-radius: 1rem;
 }
+
 .pHP,
 .eHP {
     display: flex;
@@ -102,10 +111,13 @@ h3 {
     font-family: 'Press Start 2P';
 
 }
+
 .eHP {
     font-family: 'Press Start 2P';
 }
-#enemyName, #playerName {
+
+#enemyName,
+#playerName {
     background-color: transparent;
     border: none;
     font-family: 'Press Start 2P';
@@ -113,19 +125,21 @@ h3 {
     font-size: 20px;
     padding-bottom: 1rem;
     padding-top: 1rem;
-    pointer-events:none
+    pointer-events: none
 }
 
-#enemyHP, #playerHP {
+#enemyHP,
+#playerHP {
     background-color: transparent;
     border: none;
     font-family: 'Press Start 2P';
     text-align: center;
     font-size: 20px;
-    pointer-events:none
+    pointer-events: none
 }
 
-.eHP p, .pHP p {
+.eHP p,
+.pHP p {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -154,13 +168,16 @@ h3 {
     background-size: cover;
     border-radius: 1rem;
 }
-#wins, #loses {
+
+#wins,
+#loses {
     font-family: 'Press Start 2P';
     text-align: center;
     background-color: transparent;
     border: none;
-    pointer-events:none;
+    pointer-events: none;
 }
+
 #battleRecap {
     display: flex;
     flex-direction: column;
@@ -180,12 +197,13 @@ h3 {
     background-color: transparent;
     border: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    pointer-events:none;
+    pointer-events: none;
     resize: none;
 }
+
 #printRecap {
     text-align: center;
-    pointer-events:none;
+    pointer-events: none;
 }
 
 .actionButton {
@@ -208,12 +226,13 @@ h3 {
 
 .winrate {
     grid-column-start: 2;
-    grid-row-start: 1 ;
+    grid-row-start: 1;
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: flex-end;
 }
+
 .winrateInner {
     background-color: rgba(255, 255, 255, 0.534);
     width: 70%;
@@ -248,12 +267,14 @@ h3 {
     grid-row-start: 1;
     margin-left: 10rem;
 }
+
 .slashAttackPlayer {
     position: absolute;
     z-index: 10;
     grid-column-start: 3;
     grid-row-start: 1;
 }
+
 .shieldBlockPlayer {
     position: absolute;
     z-index: 10;
