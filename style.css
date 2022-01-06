@@ -54,17 +54,8 @@ header img {
 
 }
 
-#chars {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-items: center;
-    height: 306px;
-}
 
-#enemyType {
-    grid-column-start: 3;
-    height: 306px;
-}
+
 
 h3 {
     font-family: 'Press Start 2P';
@@ -184,10 +175,7 @@ h3 {
     grid-row-end: 3;
     background-color: rgba(255, 255, 255, 0.534);
 }
-.unusedImage {
-    display: none;
-    height: 0%;
-}
+
 .cajaTexto {
     background-color: transparent;
     border: none;
@@ -237,4 +225,39 @@ h3 {
 
 .swal2-shown {
     font-family: 'Press Start 2P';
+}
+
+#enemyType {
+    grid-column-start: 3;
+    height: 306px;
+}
+
+#chars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: absolute;
+    justify-content: center;
+    height: 306px;
+    width: 1120px;
+}
+
+.slashAttackEnemy {
+    position: absolute;
+    z-index: 10;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    margin-left: 10rem;
+}
+.slashAttackPlayer {
+    position: absolute;
+    z-index: 10;
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+.shieldBlockPlayer {
+    position: absolute;
+    z-index: 10;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    margin-left: 8rem;
 }

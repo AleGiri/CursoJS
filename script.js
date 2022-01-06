@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    console.log("DOM Ready");
+    $(".slashAttackEnemy").hide();
+    $(".slashAttackPlayer").hide();
+    $(".shieldBlockPlayer").hide();
 });
 
 
@@ -136,6 +138,7 @@ modelButton.onclick = () => {
             modelSex = "ModelFem"
             console.log(modelSex)
             localStorage.setItem("Modelo", modelSex)
+            
     }
 }
 }
@@ -153,7 +156,7 @@ class Enemy {
 
 const duende = new Enemy(10, 4, 4, 2, "Duende");
 const ogro = new Enemy(5, 4, 5, 2, "Ogro");
-const demonio = new Enemy(15, 10, 12, 6, "Demonio");
+const demonio = new Enemy(15, 10, 12, 5, "Demonio");
 
 let enemies = [
     duende,
@@ -171,6 +174,7 @@ let difficulty = [
 ]
 
 easy.onclick = () => {
+    $("#war").fadeIn();
     difficulty = enemies[0]
     difficulty.remHpPlyr = 20
     difficulty.remHpEnemy = 25
@@ -179,10 +183,12 @@ easy.onclick = () => {
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
     enemySprite.src = "images/goblingif.gif";
+    enemySprite.className = "enemyModel"
     document.getElementById("enemyType").appendChild(enemySprite)
     document.getElementById("enemyName").value = difficulty.name
 }
 medium.onclick = () => {
+    $("#war").fadeIn();
     difficulty = enemies[1]
     difficulty.remHpPlyr = 25
     difficulty.remHpEnemy = 35
@@ -191,10 +197,12 @@ medium.onclick = () => {
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
     enemySprite.src = "images/ogregif.gif";
+    enemySprite.className = "enemyModel"
     document.getElementById("enemyType").appendChild(enemySprite)
     document.getElementById("enemyName").value = difficulty.name
 }
 hard.onclick = () => {
+    $("#war").fadeIn();
     difficulty = enemies[2]
     difficulty.remHpPlyr = 60
     difficulty.remHpEnemy = 100
@@ -203,6 +211,7 @@ hard.onclick = () => {
     enemySprite.removeChild(enemySprite.childNodes[2])
     enemySprite = document.createElement("img")
     enemySprite.src = "images/demongif.gif";
+    enemySprite.className = "enemyModel"
     document.getElementById("enemyType").appendChild(enemySprite)
     document.getElementById("enemyName").value = difficulty.name
 }
@@ -243,6 +252,7 @@ function alertFinal() {
 // Fin funciones de ataque, bloqueo, progreso pelea y fin pelea
 
 function winAlert() {
+    $(".enemyModel").fadeOut();
     Swal.fire({
         imageUrl: 'images/victory.png',
         timer: 1200,
@@ -253,6 +263,7 @@ function winAlert() {
 }
 
 function loseAlert() {
+    $("#war").fadeOut();
     Swal.fire({
         imageUrl: 'images/defeat.png',
         timer: 1000,
@@ -269,7 +280,6 @@ let loseCount = localStorage.getItem("Derrotas")
 
 function winPrint() {
     document.getElementById("wins").value = winCount
-
 }
 
 function losePrint() {
@@ -316,9 +326,15 @@ let block = document.getElementById("block")
 attack.onclick = () => {
     if (difficulty.remHpEnemy <= 0 && difficulty.remHpPlyr > 0) {
         alertFinal()
+        $(".enemyModel").hide();
     } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
         alertFinal()
+        $(".enemyModel").hide();
     } else {
+        $(".slashAttackEnemy").fadeIn(200);
+        $(".slashAttackEnemy").fadeOut(200);
+        $(".slashAttackPlayer").fadeIn(200);
+        $(".slashAttackPlayer").fadeOut(200);
         attackAction();
         battleState();
         document.getElementById("playerHP").value = difficulty.remHpPlyr;
@@ -333,6 +349,10 @@ block.onclick = () => {
     } else if (difficulty.remHpPlyr <= 0 && difficulty.remHpEnemy >= 0) {
         alertFinal();
     } else {
+        $(".shieldBlockPlayer").fadeIn(200);
+        $(".shieldBlockPlayer").fadeOut(200);
+        $(".slashAttackPlayer").fadeIn(200);
+        $(".slashAttackPlayer").fadeOut(200);
         blockAction();
         battleState();
         document.getElementById("playerHP").value = difficulty.remHpPlyr;
