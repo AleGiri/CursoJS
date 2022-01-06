@@ -117,6 +117,12 @@ function modelFunction() {
 
 
 modelButton.onclick = () => {
+    if (document.getElementById("playerName").value == "Tincho") {
+        modelChange.src = "images/secrettincho.gif"
+    } else if (document.getElementById("playerName").value == "Lenosaurio"){
+        modelChange.src = "images/secretlenosaurio.gif"
+    }
+    else {
     switch (modelSex) {
         case "ModelFem":
             modelChange.src = "images/warriormgif.gif"
@@ -130,6 +136,7 @@ modelButton.onclick = () => {
             console.log(modelSex)
             localStorage.setItem("Modelo", modelSex)
     }
+}
 }
 
 // Constructor de enemigos
@@ -241,7 +248,7 @@ function winAlert() {
         showConfirmButton: false,
         allowOutsideClick: false,
         background: 'transparent'
-   })
+    })
 }
 
 function loseAlert() {
@@ -251,7 +258,7 @@ function loseAlert() {
         showConfirmButton: false,
         allowOutsideClick: false,
         background: 'transparent'
-   })
+    })
 }
 
 // Funcion de guardado en localstorage de victorias y derrotas
