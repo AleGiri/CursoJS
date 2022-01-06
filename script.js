@@ -122,7 +122,8 @@ modelButton.onclick = () => {
     } else if (document.getElementById("playerName").value == "Lenosaurio"){
         modelChange.src = "images/secretlenosaurio.gif"
     }
-    else {
+    else if (document.getElementById("playerName").value == "Mecha") {modelChange.src = "images/secretmecha.gif"}
+       else {
     switch (modelSex) {
         case "ModelFem":
             modelChange.src = "images/warriormgif.gif"
